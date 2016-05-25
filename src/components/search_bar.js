@@ -23,15 +23,20 @@ class SearchBar extends Component {
   render() {
     // create a new input element, pass in the value into onInputChange
     return (
-      <div>
+      <div className="search-bar">
         <input
           value = {this.state.term}
-          onChange={ event => this.setState({ term: event.target.value })} />
+          onChange={ event => this.onInputChange(event.target.value) } />
       </div>
       // value = {this.state.term} -- turn it into a control component -- has its value based on state
       // the input changes, tells the state new value, the value of the input is set to this.state.term
       // when the user types something, it triggers the event, then sets it as the new value -- the value of the input is equal to the state
     );
+  }
+
+  onInputChange(term) {
+    this.setState({term});
+    this.props.onSearchTermChange(term);
   }
 
   // event handler should run everytime an event happens -- onChange=
